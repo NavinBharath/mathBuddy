@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./mathbuddy_css/adaptive-practice.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Adaptive Practice</title>
+</head>
+
+<body style="background-color: #f3edfd;">
+    <div class="container content">
+        <div class="text-center question">
+            <h2>What numbers come before and after 21?</h2>
+        </div>
+        <div class="container">
+            <div class="row text-center" style="margin-top: 5em;">
+                <div class="col">
+                    <div id="answer1" class="dropOption right" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="answer2" class="fixedOption" style="font-size: 5em;" draggable="false">21</div>
+                </div>
+                <div class="col">
+                    <div id="answer3" class="dropOption left" draggable="false" ondrop="drop(event)"
+                        ondragover="allowDrop(event)"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row text-center" style="margin-top: 5em;">
+                <div class="col">
+                    <div id="option1" class="option" draggable="true" ondragstart="drag(event)">
+                        <span class="optionText">20</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="option2" class="option" draggable="true" ondragstart="drag(event)">
+                        <span class="optionText">22</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="option3" class="option" draggable="true" ondragstart="drag(event)">
+                        <span class="optionText">23</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="option4" class="option" draggable="true" ondragstart="drag(event)">
+                        <span class="optionText">24</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <button type="button" class="btn btn-primary" onclick="validate()">Check</button>
+    </div>
+
+    <script>
+        let number = 21;
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data))
+        }
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+        function validate(){
+            const ans1 = document.getElementById("answer1").textContent
+            const ans2 = document.getElementById("answer3").textContent
+            if(ans1 < number && ans2 > number){
+                alert('correct answer!!!!')
+            } else {
+                alert('wrong answer!!!')
+            }
+        }
+        const option = document.getElementById("option1").textContent
+        console.log(option, 'is selected.')
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
